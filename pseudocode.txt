@@ -1,0 +1,27 @@
+FUNCTION findMaxInMin(arr, n)
+    // Validate input
+    IF arr IS EMPTY OR n <= 0 OR n > LENGTH(arr) THEN
+        RETURN NULL
+    END IF
+
+    maxOfMins = -INFINITY
+
+    // Iterate through all possible windows
+    FOR i FROM 0 TO LENGTH(arr) - n DO
+        minInWindow = arr[i]
+
+        // Find minimum value in current window
+        FOR j FROM i + 1 TO i + n - 1 DO
+            IF arr[j] < minInWindow THEN
+                minInWindow = arr[j]
+            END IF
+        END FOR
+
+        // Update maximum of minimum values
+        IF minInWindow > maxOfMins THEN
+            maxOfMins = minInWindow
+        END IF
+    END FOR
+
+    RETURN maxOfMins
+END FUNCTION
